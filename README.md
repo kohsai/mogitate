@@ -106,16 +106,13 @@ php artisan migrate --seed
 
 ・MySQL: 8.0.26
 
-【　テーブル設計　】
-
-![alt text](<スクリーンショット 2025-01-05 145239.png>)
 
 【　ER図　】
 
-![alt text](<スクリーンショット 2025-01-05 152800-1.png>)
-
+![alt text](<スクリーンショット 2025-04-11 225909.png>)
 
 【　URL　】
+
 ・開発環境:http://localhost/
 
 ・phpMyAdmin:http://localhost:8080
