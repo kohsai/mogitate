@@ -3,18 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Season;
 
 class SeasonsTableSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        DB::table('seasons')->insert([
-            ['name' => '春', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => '夏', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => '秋', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => '冬', 'created_at' => now(), 'updated_at' => now()],
+        $seasons = ['春','夏','秋','冬'];
 
-        ]);
+        foreach($seasons as $season){
+            Season::create(['name' => $season]);
+        }
     }
 }
