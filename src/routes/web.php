@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
 
+Route::get('/test', function() {
+    return view('test');
+});
+
+
+
 // 商品一覧
 Route::get('/products',[ProductController::class, 'index'])->name('products.index');
 
