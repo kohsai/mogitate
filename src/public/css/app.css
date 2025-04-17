@@ -229,3 +229,9 @@ input::placeholder,
 textarea::placeholder {
     color: #bbb; /* やや薄めのグレーに調整 */
 }
+
+
+#file-name {
+    font-size: 13px;
+    color: #444;
+}

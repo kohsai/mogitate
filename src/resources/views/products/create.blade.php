@@ -28,10 +28,20 @@
             {{-- 商品画像 --}}
             <div class="form-group">
                 <label for="image">商品画像 <span class="required">必須</span></label>
+
+                {{-- プレビュー画像を追加 --}}
+            <div id="image-preview-wrapper" style="margin-top: 12px;">
+                <img id="image-preview" src="#" alt="プレビュー画像" style="display: none; max-width: 300px;">
+            </div>
+
+            {{-- ボタン＋ファイル名表示 --}}
+            <div style="display: flex; align-items: center; gap: 12px;">
                 <label class="file-label">
                     ファイルを選択
                     <input type="file" name="image" id="image" class="file-input">
                 </label>
+                <p id="file-name" style="font-size: 14px; color: #666; margin-top: 8px;"></p>
+            </div>
 
                 @error('image')
                     <p class="error-message">{{ $message }}</p>
@@ -72,5 +82,27 @@
         </form>
     </div>
 
+<script>
+    document.getElementById('image').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('image-preview');
+        const fileNameText = document.getElementById('file-name');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+
+            fileNameText.textContent = file.name; // ← ファイル名表示
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+            fileNameText.textContent = ''; // ← ファイル名リセット
+        }
+    });
+</script>
 
 @endsection
