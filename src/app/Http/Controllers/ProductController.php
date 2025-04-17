@@ -39,4 +39,10 @@ class ProductController extends Controller
     {
         return "詳細ページ(productId:{$productId}) ";
     }
+
+    public function index()
+    {
+        $products = Product::with('seasons')->get(); // 必要に応じてページネーションなど
+        return view('products.index', compact('products'));
+    }
 }

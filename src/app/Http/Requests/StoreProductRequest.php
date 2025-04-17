@@ -17,9 +17,9 @@ class StoreProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'price' => 'required|integer|min:0|max:10000',
             'seasons' => 'required|array',
-            'seasons.*' => 'string', // 複数選択のため
+            'seasons.*' => 'exists:seasons,id',
             'description' => 'required|string|max:120',
-            'image' => 'required|file|mimes:png,jpeg',
+            'image' => 'required|image|mimes:png,jpeg',
         ];
     }
 
