@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
+use App\Models\Season;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $seasons = Season::all();
+
+        return view('products.create', compact('seasons'));
     }
 
     public function show($productId)
