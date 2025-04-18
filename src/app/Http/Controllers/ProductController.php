@@ -42,7 +42,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::with('seasons')->get(); // 必要に応じてページネーションなど
+        $products = Product::with('seasons')->paginate(6); // 必要に応じてページネーション
         return view('products.index', compact('products'));
     }
 }
