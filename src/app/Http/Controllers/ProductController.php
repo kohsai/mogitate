@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use App\Models\Season;
@@ -35,14 +36,36 @@ class ProductController extends Controller
         return view('products.create', compact('seasons'));
     }
 
+    // 商品検索（仮実装）
     public function show($productId)
     {
         return "詳細ページ(productId:{$productId}) ";
     }
 
-    public function index()
+
+    public function index(Request $request)
     {
-        $products = Product::with('seasons')->paginate(6); // 必要に応じてページネーション
-        return view('products.index', compact('products'));
+    $query = Product::with('seasons');
+
+    // 商品名で部分一致検索
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    // 並び替え（sort パラメータ）
+    if ($request->filled('sort')) {
+        if ($request->sort === 'high') {
+            $query->orderBy('price', 'desc');
+        } elseif ($request->sort === 'low') {
+            $query->orderBy('price', 'asc');
+        }
+    } else {
+        // デフォルト：新しい順
+        $query->orderBy('id', 'desc');
+    }
+
+    $products = $query->paginate(6)->appends($request->only(['keyword', 'sort']));
+
+    return view('products.index', compact('products'));
     }
 }
