@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Season;
 
@@ -36,10 +37,11 @@ class ProductController extends Controller
         return view('products.create', compact('seasons'));
     }
 
-    // 商品検索（仮実装）
-    public function show($productId)
+
+    public function show($id)
     {
-        return "詳細ページ(productId:{$productId}) ";
+        $product = Product::with('seasons')->findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
 
@@ -68,4 +70,33 @@ class ProductController extends Controller
 
     return view('products.index', compact('products'));
     }
+
+    public function update(UpdateProductRequest $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+
+        $validated = $request->validated();
+
+        // 画像の保存処理（ある場合のみ）
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $validated['image'] = $path;
+        }
+
+        // Product情報のみ更新（seasonsを除く）
+        $product->update([
+            'name' => $validated['name'],
+            'price' => $validated['price'],
+            'description' => $validated['description'],
+            'image' => $validated['image'] ?? $product->image,
+        ]);
+
+        // リレーションの同期（中間テーブルを更新）
+        $product->seasons()->sync($validated['seasons']);
+
+
+        return redirect()->route('products.index')->with('success', '商品を更新しました');
+    }
+
+
 }

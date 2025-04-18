@@ -231,6 +231,13 @@ textarea::placeholder {
     transition: transform 0.2s;
 }
 
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
 .product-card:hover {
     transform: translateY(-3px);
 }
@@ -419,3 +426,167 @@ textarea::placeholder {
 .add-button:hover {
     background-color: #e0b700;
 }
+
+
+.delete-form {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* --------------------------------------------------------- */
+
+.breadcrumb-wrapper {
+    max-width: 800px;
+    margin: 0 auto 20px auto;  /* ← form と同じ横幅・中央寄せ */
+    padding-left: 0;           /* ← formと左端揃え */
+}
+
+.breadcrumb-link {
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+
+.form-wrapper.update-form {
+    max-width: 800px; /* 少し狭めに再調整 */
+    margin: 0 auto;
+    /* background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.06); */
+    border-radius: 12px;
+    padding: 40px;
+}
+
+
+/* --- 2カラムレイアウト --- */
+.form-columns {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* 左画像カラム */
+.form-image {
+    flex-shrink: 0;
+    width: 300px;
+}
+
+.form-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* 右の入力欄カラム */
+.form-fields {
+    flex: 1;
+}
+
+/* 各フォーム項目に余裕を持たせる */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* テキスト入力欄等 */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* チェックボックス群の整列 */
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+
+
+/* ボタン並列 */
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex: 1;
+}
+
+* 戻る／保存ボタン */
+.btn-back,
+.btn-submit {
+    width: 200px;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-back {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-submit {
+    background-color: #f5c800;
+    color: #333;
+}
+
+
+.delete-button-wrapper {
+    max-width: 800px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-form-inline {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+/* ゴミ箱ボタン（右下固定） */
+.delete-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #d32f2f; /* 赤アイコンカラー */
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0 8px;
+}
+
+/* 親フォーム要素に relative を追加 */
+.form-wrapper.update-form {
+    position: relative;
+}
+
+.form-action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;;
+    margin-top: 40px;
+}
+
+.delete-button-hover {
+    color: #b71c1c;
+}
+

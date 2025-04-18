@@ -46,6 +46,7 @@
         {{-- 右カラム（商品一覧） --}}
         <div class="product-grid">
             @foreach ($products as $product)
+            <a href="{{ route('products.show', $product->id) }}" class="product-card-link">
                 <div class="product-card">
                     <img src="{{ asset('storage/' . $product->image) }}" alt="商品画像">
                     <div class="product-info">
@@ -53,6 +54,7 @@
                         <span class="product-price">¥{{ number_format($product->price) }}</span>
                     </div>
                 </div>
+            </a>
             @endforeach
         </div>
     </div>

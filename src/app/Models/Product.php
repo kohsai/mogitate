@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     // 一括代入の許可カラム
-    protected $fillable = ['name', 'price', 'description', 'image'];
+    protected $fillable = ['name', 'price', 'seasons', 'description', 'image'];
 
     // Seasonとのリレーション（多対多）
     public function seasons()
