@@ -1,6 +1,7 @@
 # サービス名 【 mogitate 】
 
-![mogitate画面](<商品一覧ページ (1).png>)
+![mogitate画面](readme-products.png)
+
 
 【　機能一覧　】
 
@@ -19,14 +20,19 @@
 
 
 【　環境構築　】
-Dockerビルド
+
+リポジトリをクローン
 
 git clone git@github.com:kohsai/mogitate.git
 
 
+
+Docker起動
+
 DockerDesktopアプリを立ち上げる
 
 docker-compose up -d --build
+
 
 
 【 MySQLデータベースと権限の設定 】
@@ -42,6 +48,7 @@ DockerコンテナでMySQLデータベースが自動作成されるよう設定
 パスワード: laravel_pass
 
 必要な設定は docker-compose.yml に記述済みです。
+
 
 
 【　Laravel環境構築　】
@@ -62,7 +69,8 @@ cp .env.example .env
 
 .env ファイルを編集し、以下の内容を確認または修正してください。
 
-.envに以下の環境変数を追加
+
+.envに以下の環境変数を設定します。
 
 
 DB_CONNECTION=mysql
@@ -98,6 +106,9 @@ php artisan migrate --seed
 シードの実行により、初期データがデータベースに挿入されます。この操作は必須です。
 
 
+
+
+
 【　使用技術（実行環境）】
 
 ・PHP: 7.4.9
@@ -109,11 +120,12 @@ php artisan migrate --seed
 
 【　ER図　】
 
-![alt text](<スクリーンショット 2025-04-11 225909.png>)
+![ER図](readme-er.png)
 
-【　URL　】
 
-・開発環境:http://localhost/
+【　開発用アクセスURL 】
 
-・phpMyAdmin:http://localhost:8080
+・Laravelアプリ：http://localhost/products
+（※ php artisan serve は不要です。Apache経由で動作します）
 
+・phpMyAdmin：http://localhost:8080
