@@ -78,6 +78,4 @@
                 </button>
             </form>
         </div>
-    </form>
-</div>
 @endsection
