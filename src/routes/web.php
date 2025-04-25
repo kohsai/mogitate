@@ -16,16 +16,13 @@ Route::get('/products/register', [ProductController::class, 'create'])->name('pr
 // 商品登録（登録処理）
 Route::post('/products/register', [ProductController::class, 'store'])->name('products.store');
 
-// 商品検索（未使用なら後ほど整理）
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
-
 // 商品更新（フォーム表示）
 Route::get('/products/{productId}/update', [ProductController::class, 'edit'])->name('products.edit');
 
-// 商品更新（更新処理）★PUTに変更
+// 商品更新（更新処理）
 Route::put('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');
 
-// 商品削除（削除処理）★DELETEに変更
+// 商品削除（削除処理）
 Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // 商品詳細

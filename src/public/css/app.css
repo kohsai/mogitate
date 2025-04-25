@@ -557,9 +557,23 @@ textarea::placeholder {
 }
 
 .delete-form-inline {
-    margin-left: auto;
-    margin-right: 0;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
 }
+
+.form-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.trash-can-content {
+    margin-left: auto;
+    padding-left: 20px;
+}
+
 
 
 /* ゴミ箱ボタン（右下固定） */
@@ -570,7 +584,6 @@ textarea::placeholder {
     color: #d32f2f; /* 赤アイコンカラー */
     cursor: pointer;
     transition: color 0.2s ease;
-    padding: 0 8px;
 }
 
 /* 親フォーム要素に relative を追加 */

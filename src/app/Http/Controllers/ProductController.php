@@ -98,5 +98,12 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', '商品を更新しました');
     }
 
+    public function destroy($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $product->seasons()->detach(); // 中間テーブルも削除
+        $product->delete();
 
+        return redirect()->route('products.index')->with('success', '商品を削除しました');
+    }
 }

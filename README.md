@@ -3,39 +3,41 @@
 ![mogitate画面](readme-products.png)
 
 
-【　機能一覧　】
+【 機能一覧 】
+
 
 /products                       商品一覧ページ
 
 /products/{productId}	        商品詳細ページ
 
-/products/{productId}/update    商品更新ページ
+/products/{productId}/update    更新処理ルート
 
 /products/register	            商品登録ページ
 
-/products/search                検索ページ
-
-/products/{productId}/delete	削除ページ
+/products/{productId}/delete	商品削除ルート
 
 
 
-【　環境構築　】
+【 環境構築 】
 
-リポジトリをクローン
 
+
+【 リポジトリをクローン 】
+
+```bash
 git clone git@github.com:kohsai/mogitate.git
+```
 
 
+【 DockerDesktopアプリを起動する 】
 
-Docker起動
-
-DockerDesktopアプリを立ち上げる
-
+```bash
 docker-compose up -d --build
-
+```
 
 
 【 MySQLデータベースと権限の設定 】
+
 
 DockerコンテナでMySQLデータベースが自動作成されるよう設定済みです。
 
@@ -51,28 +53,31 @@ DockerコンテナでMySQLデータベースが自動作成されるよう設定
 
 
 
-【　Laravel環境構築　】
+【 Laravel環境構築 】
 
+```bash
 docker-compose exec php bash
 
 composer install
-
+```
 
 【 .env ファイルを作成 】
+
 
 プロジェクトをクローンした場合、.env ファイルが存在しないため、次の手順で作成します。
 
 .env.example ファイルを .env ファイルとしてコピーします。
 
+```bash
 cp .env.example .env
-
+```
 
 .env ファイルを編集し、以下の内容を確認または修正してください。
 
 
 .envに以下の環境変数を設定します。
 
-
+```env
 DB_CONNECTION=mysql
 
 DB_HOST=mysql
@@ -84,37 +89,47 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 
 DB_PASSWORD=laravel_pass
+```
 
 
+【 アプリケーションキーの作成 】
 
-
-
-【　アプリケーションキーの作成　】
-
+```bash
 php artisan key:generate
+```
 
-【　マイグレーションの実行　】
 
+【 マイグレーションの実行 】
+
+```bash
 php artisan migrate
+```
 
 
-【　初期データの登録（シードの実行）　】
+【 初期データの登録（シードの実行） 】
 
-php artisan migrate --seed
+```bash
+php artisan db:seed
+```
+
 
 注意:
 シードの実行により、初期データがデータベースに挿入されます。この操作は必須です。
 
 
-【　シンボリックリンクの作成（画像表示のため）　】
+【 シンボリックリンクの作成（画像表示のため） 】
 
+```bash
 php artisan storage:link
+```
+
 
 ※ このコマンドを実行しないと、商品画像が正しく表示されません。
 
 
 
-【　使用技術（実行環境）】
+【 使用技術（実行環境）】
+
 
 ・PHP: 7.4.9
 
@@ -123,12 +138,14 @@ php artisan storage:link
 ・MySQL: 8.0.26
 
 
-【　ER図　】
+【 ER図 】
+
 
 ![ER図](readme-er.png)
 
 
-【　開発用アクセスURL 】
+【 開発用アクセスURL 】
+
 
 ・Laravelアプリ：http://localhost/products
 （※ php artisan serve は不要です。Apache経由で動作します）

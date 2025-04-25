@@ -7,7 +7,7 @@
         <a href="{{ route('products.index') }}" class="breadcrumb-link">商品一覧</a> ＞ {{ $product->name }}
     </div>
 
-    {{-- メインフォーム --}}
+    {{-- 更新フォーム --}}
     <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="form-wrapper update-form">
         @csrf
         @method('PUT')
@@ -39,14 +39,14 @@
                 <div class="form-group">
                     <label>季節</label>
                     @php
-                        $selectedSeasons = old('seasons') ?? $product->seasons->pluck('name')->toArray();
+                        $allSeasons = App\Models\Season::all();
+                        $selectedSeasons = old('seasons', $product->seasons->pluck('id')->toArray());
                     @endphp
                     <div class="checkbox-group">
-                        @foreach (['春', '夏', '秋', '冬'] as $season)
+                        @foreach ($allSeasons as $season)
                             <label>
-                                <input type="checkbox" name="seasons[]" value="{{ $season }}"
-                                    {{ in_array($season, $selectedSeasons) ? 'checked' : '' }}>
-                                {{ $season }}
+                                <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, $selectedSeasons) ? 'checked' : '' }}>
+                                {{ $season->name }}
                             </label>
                         @endforeach
                     </div>
@@ -68,14 +68,18 @@
                 <a href="{{ route('products.index') }}" class="btn-back">戻る</a>
                 <button type="submit" class="btn-submit">変更を保存</button>
             </div>
-
-            {{-- ゴミ箱ボタン --}}
-            <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="delete-form-inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="delete-button" title="削除">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            </form>
         </div>
+    </form>
+
+    {{-- 削除ボタン --}}
+    <div class="delete-button-wrapper">
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="delete-form-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="delete-button" title="削除">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </form>
+    </div>
+</div>
 @endsection
