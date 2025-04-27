@@ -57,7 +57,9 @@ DockerコンテナでMySQLデータベースが自動作成されるよう設定
 
 ```bash
 docker-compose exec php bash
+```
 
+```bash
 composer install
 ```
 
@@ -124,7 +126,43 @@ php artisan storage:link
 ```
 
 
-※ このコマンドを実行しないと、商品画像が正しく表示されません。
+【 パーミッション設定（重要！） 】
+
+```bash
+chmod -R 777 storage bootstrap/cache
+```
+（※storage/logs, storage/framework/viewsに書き込めないエラーを防ぐため）
+
+
+【 画像ファイル配置（重要！） 】
+
+・プロジェクト直下の storage/app/public/images/ フォルダに商品画像を手動で配置してください。
+
+・画像ファイルがないと商品一覧に画像が表示されません。
+
+必要なファイル例：
+
+banana.png
+
+strawberry.png
+
+orange.png
+
+watermelon.png
+
+kiwi.png
+
+muscat.png
+
+peach.png
+
+grapes.png
+
+melon.png
+
+pineapple.png
+
+※もしローカルにない場合は、オリジナルのダミー画像を用意するか、パスだけ存在する状態でも動作は可能です。
 
 
 
